@@ -28,3 +28,8 @@ GET     /users/:user/edit  ->  edit
 PUT     /users/:user       ->  update
 DELETE  /users/:user       ->  destroy
 ~~~
+
+Road Map
+===========
+* Database connection to MongoDB
+* Data cache and response by redis
