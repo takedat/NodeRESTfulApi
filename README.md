@@ -1,6 +1,6 @@
 Node RESTful API
 ===================
-The foundation for making a RESTful api in Nodejs.
+The foundation for making a RESTful api in Node.js.
 
 Components
 ===================
