@@ -1,6 +1,6 @@
 Node RESTful API
 ===================
-The foundation for making a RESTful api in nodejs.
+The foundation for making a RESTful api in Nodejs.
 
 Components
 ===================
@@ -17,12 +17,12 @@ $ sudo npm install
 $ npm start
 ~~~
 
-Request Mapping
+Example for request mapping
 ===========
 ~~~
-GET     /users              ->  index
-GET     /users/new          ->  new
-POST    /users              ->  create
+GET     /users             ->  index
+GET     /users/new         ->  new
+POST    /users             ->  create
 GET     /users/:user       ->  show
 GET     /users/:user/edit  ->  edit
 PUT     /users/:user       ->  update
