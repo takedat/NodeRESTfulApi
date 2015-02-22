@@ -1,9 +1,27 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var userShema = new Schema({
+  'name':String,
+  'mail':String,
+  'memo':String
+});
+
+var User = mongoose.model('user',userShema);
+var db = mongoose.connect('mongodb://localhost/user');
+
 exports.index = function(req, res){
-  var json = {
-    "status":200,
-    "kind":"index"
-  };
-  res.json(json);
+  User.find(function(err,docs){
+    if (err) {
+      console.log(err);
+    }
+    var json = {
+      "status":200,
+      "kind":"index",
+      "doc":docs
+    };
+    res.json(json);
+  });
 };
 exports.new = function(req, res){
   var json = {
@@ -14,41 +32,112 @@ exports.new = function(req, res){
 };
 
 exports.create = function(req, res){
-  var json = {
-    "status":200,
-    "kind":"create"
-  };
-  res.json(json);
+  var number =  Math.floor( Math.random() * 9999 );
+  var name = 'name' + number;
+  var mail = number + '@example.com';
+  var memo = number;
+
+  var data = new User({
+    'name':name,
+    'mail':mail,
+    'memo':memo
+  });
+  data.save(function (err,docs) {
+    if (err) {
+      console.log(err);
+    }
+    var json = {
+      "status":200,
+      "kind":"create",
+      "doc":docs
+    };
+    res.json(json);
+  });
 };
 
 exports.show = function(req, res){
-  var json = {
-    "status":200,
-    "kind":"show"
-  };
-  res.json(json);
+  var id = req.params.id;
+  User.findOne({
+    '_id':id
+  },function (err,doc) {
+    if (err) {
+      console.log(err);
+    }
+    var json = {
+      "status":200,
+      "kind":"show",
+      "doc":doc
+    };
+    res.json(json);
+  });
 };
 
 exports.edit = function(req, res){
-  var json = {
-    "status":200,
-    "kind":"edit"
-  };
-  res.json(json);
+  var id = req.params.id;
+  User.findOne({
+    '_id':id
+  },function (err,doc) {
+    if (err) {
+      console.log(err);
+    }
+    var json = {
+      "status":200,
+      "kind":"edit",
+      "doc":doc
+    };
+    res.json(json);
+  });
 };
 
 exports.update = function(req, res){
-  var json = {
-    "status":200,
-    "kind":"update"
-  };
-  res.json(json);
+  var id = req.params.id;
+  User.findOne({
+    '_id':id
+  },function (err,doc) {
+    if (err) {
+      console.log(err);
+    }
+
+    var number =  Math.floor( Math.random() * 9999 );
+    doc.name = 'name' + number;
+    doc.mail = number + '@example.com';
+    doc.memo = number;
+
+    var json = {
+      "status":200,
+      "kind":"update",
+      "doc":doc
+    };
+
+    doc.save(function (err) {
+      if (err) {
+        console.log(err);
+      }
+      res.json(json);
+    });
+  });
 };
 
 exports.destroy = function(req, res){
-  var json = {
-    "status":200,
-    "kind":"destroy"
-  };
-  res.json(json);
+  var id = req.params.id;
+  User.findOne({
+    '_id':id
+  },function (err,doc) {
+    if (err) {
+      console.log(err);
+    }
+
+    var json = {
+      "status":200,
+      "kind":"destroy",
+      "doc":doc
+    };
+
+    doc.remove(function (err) {
+      if (err) {
+        console.log(err);
+      }
+      res.json(json);
+    });
+  });
 };
