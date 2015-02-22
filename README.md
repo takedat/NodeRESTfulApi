@@ -11,7 +11,7 @@ Components
 
 Getting Started
 ===========
-Installing  [node.js](http://nodejs.org/) and [express](http://expressjs.com/),[MongoDB](http://www.mongodb.org/)
+Installing  [Node.js](http://nodejs.org/) and [express](http://expressjs.com/),[MongoDB](http://www.mongodb.org/)
 ~~~
 $ cd path/to/directory
 $ sudo npm install
