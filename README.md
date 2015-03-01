@@ -16,8 +16,8 @@ Installing  [Node.js](http://nodejs.org/) and [express](http://expressjs.com/),[
 $ cd path/to/directory
 $ sudo npm install
 $ redis-server # redis start
-$ npm start    # express start
 $ sudo mongo   # MongoDB start
+$ npm start    # express start
 ~~~
 
 request mapping
