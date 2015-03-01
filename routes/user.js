@@ -4,8 +4,31 @@ var Schema = mongoose.Schema;
 var userShema = new Schema({
   'name':String,
   'mail':String,
-  'memo':String
+  'memo':String,
+  'nestsample':Object
 });
+
+var nestsample = {
+  "nestLevel1":"test1 value",
+  "nestLevel2array":[
+    {
+      "nestLevel2key1":"test2 value",
+      "nestLevel2key2":"test2 value2"
+    },
+    {
+      "nestLevel3array":[
+        {
+          "nestLevel3key1":"test3 value",
+          "nestLevel4array":[
+            {
+              "nestLevel4key1":"test4 value"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
 
 var User = mongoose.model('user',userShema);
 var db = mongoose.connect('mongodb://localhost/user');
@@ -18,7 +41,7 @@ exports.index = function(req, res){
     var json = {
       "status":200,
       "kind":"index",
-      "doc":docs
+      "doc":docs,
     };
     res.json(json);
   });
@@ -26,7 +49,7 @@ exports.index = function(req, res){
 exports.new = function(req, res){
   var json = {
     "status":200,
-    "kind":"new"
+    "kind":"new",
   };
   res.json(json);
 };
@@ -40,7 +63,8 @@ exports.create = function(req, res){
   var data = new User({
     'name':name,
     'mail':mail,
-    'memo':memo
+    'memo':memo,
+    "nestsample":nestsample
   });
   data.save(function (err,docs) {
     if (err) {
