@@ -47,7 +47,8 @@ exports.index = function(req, res){
     };
     client.get(json,function (err,val) {
       if(err) return console.log(err);
-      res.json(json);
+      var responsejson = JSON.parse(val);
+      res.json(responsejson);
     });
   });
 };
@@ -101,7 +102,8 @@ exports.show = function(req, res){
     };
     client.get(json,function (err,val) {
       if(err) return console.log(err);
-      res.json(json);
+      var respjson = JSON.parse(val);
+      res.json(respjson);
     });
   });
 };
