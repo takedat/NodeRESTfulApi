@@ -11,10 +11,11 @@ Components
 
 Getting Started
 ===========
-Installing  [Node.js](http://nodejs.org/) and [express](http://expressjs.com/),[MongoDB](http://www.mongodb.org/)
+Installing  [Node.js](http://nodejs.org/) and [express](http://expressjs.com/),[MongoDB](http://www.mongodb.org/),[redis](http://redis.io/)
 ~~~
 $ cd path/to/directory
 $ sudo npm install
+$ redis-server # redis start
 $ npm start    # express start
 $ sudo mongo   # MongoDB start
 ~~~
@@ -50,4 +51,4 @@ $ curl localhost:3000/users/[_id] -X DELETE
 Road Map
 ===========
 * ~~Database connection to MongoDB~~
-* Data cache and response by redis
+* ~~Data cache and response by redis~~

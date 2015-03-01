@@ -33,6 +33,8 @@ var nestsample = {
 var User = mongoose.model('user',userShema);
 var db = mongoose.connect('mongodb://localhost/user');
 
+var client = require('redis').createClient();
+
 exports.index = function(req, res){
   User.find(function(err,docs){
     if (err) {
@@ -43,7 +45,10 @@ exports.index = function(req, res){
       "kind":"index",
       "doc":docs,
     };
-    res.json(json);
+    client.get(json,function (err,val) {
+      if(err) return console.log(err);
+      res.json(json);
+    });
   });
 };
 exports.new = function(req, res){
@@ -75,7 +80,9 @@ exports.create = function(req, res){
       "kind":"create",
       "doc":docs
     };
-    res.json(json);
+    client.set("json",JSON.stringify(json),function () {
+      res.json(json);
+    });
   });
 };
 
@@ -92,7 +99,10 @@ exports.show = function(req, res){
       "kind":"show",
       "doc":doc
     };
-    res.json(json);
+    client.get(json,function (err,val) {
+      if(err) return console.log(err);
+      res.json(json);
+    });
   });
 };
 
@@ -109,7 +119,10 @@ exports.edit = function(req, res){
       "kind":"edit",
       "doc":doc
     };
-    res.json(json);
+    client.set(json,function (err,val) {
+      if(err) return console.log(err);
+      res.json(json);
+    });
   });
 };
 
@@ -137,7 +150,9 @@ exports.update = function(req, res){
       if (err) {
         console.log(err);
       }
-      res.json(json);
+      client.set("json",JSON.stringify(json),function () {
+        res.json(json);
+      });
     });
   });
 };
@@ -161,7 +176,9 @@ exports.destroy = function(req, res){
       if (err) {
         console.log(err);
       }
-      res.json(json);
+      client.del("json",JSON.stringify(json),function () {
+        res.json(json);
+      });
     });
   });
 };
