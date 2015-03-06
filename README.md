@@ -8,6 +8,7 @@ Components
 * express@3
 * express-resource
 * MongoDB/Mongoose
+* Redis
 
 Getting Started
 ===========
