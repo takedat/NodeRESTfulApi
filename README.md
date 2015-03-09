@@ -18,7 +18,7 @@ $ cd path/to/directory
 $ sudo npm install
 $ redis-server # redis start
 $ sudo mongo   # MongoDB start
-$ npm start    # express start
+$ pm2 start processes.json  # pm2 start
 ~~~
 
 request mapping
